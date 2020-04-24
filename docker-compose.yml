@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://admin:admin@postgres/postgres?sslmode=disable
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
